@@ -35,6 +35,18 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     public DobbeltLenketListe(T[] a) {
 
+        this();
+        Objects.requireNonNull(a, "a er en null-tabell!");
+        if (a.length == 0) {
+            return;
+        }
+        int start = 0;
+        while (a[start] == null){
+            if (start >= a.length - 1){
+                return;
+            }
+            start++;
+        }
 
         throw new UnsupportedOperationException();
     }
