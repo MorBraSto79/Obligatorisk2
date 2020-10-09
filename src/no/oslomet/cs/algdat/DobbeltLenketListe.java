@@ -30,13 +30,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public DobbeltLenketListe() {
 
 
-        //throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException();
     }
 
     public DobbeltLenketListe(T[] a) {
 
 
-        //throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException();
     }
 
     public Liste<T> subliste(int fra, int til){
@@ -200,6 +200,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     } // class DobbeltLenketListeIterator
 
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
+        throw new UnsupportedOperationException();
+    }
+
+    private Node<T> finnNode(int indeks){
         throw new UnsupportedOperationException();
     }
 
