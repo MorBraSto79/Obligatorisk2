@@ -27,11 +27,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     private int endringer;         // antall endringer i listen
 
     public DobbeltLenketListe() {
-        throw new UnsupportedOperationException();
+
+
+        //throw new UnsupportedOperationException();
     }
 
     public DobbeltLenketListe(T[] a) {
-        throw new UnsupportedOperationException();
+
+
+        //throw new UnsupportedOperationException();
     }
 
     public Liste<T> subliste(int fra, int til){
@@ -40,12 +44,21 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int antall() {
-        throw new UnsupportedOperationException();
+
+        return antall;
+        //throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean tom() {
-        throw new UnsupportedOperationException();
+
+        if (antall == 0 && hode == null && hale == null){
+            return true;
+        }
+        else{
+            return false;
+        }
+        //throw new UnsupportedOperationException();
     }
 
     @Override
@@ -95,7 +108,20 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        StringBuilder streng = new StringBuilder();
+
+        streng.append('[');     //legger til "start" klammen
+
+        if(!tom()){             // hvis lenken er tom går vi videre, hvis ikke, så looper vi gjennom listen
+            streng.append(hode.verdi);
+            for (Node<T> i = hode.neste; i != null; i = i.neste){    // så lenge noden ikke perker på null, legger vi til komma, mellomrom og nodens verdi
+                streng.append(',').append(' ').append(i.verdi);
+            }
+        }
+
+        streng.append(']');     // legger til "Slutt" klammen uten komma bak siste tall
+        return streng.toString();
+        //throw new UnsupportedOperationException();
     }
 
     public String omvendtString() {
