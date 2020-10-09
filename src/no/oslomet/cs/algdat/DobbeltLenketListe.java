@@ -1,6 +1,7 @@
 package no.oslomet.cs.algdat;
 
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.Iterator;
 
 public class DobbeltLenketListe<T> implements Liste<T> {
@@ -63,7 +64,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean leggInn(T verdi) {
-        throw new UnsupportedOperationException();
+
+        Objects.requireNonNull(verdi, "Null-verdier er ikke tillat");
+
+        //throw new UnsupportedOperationException();
     }
 
     @Override
