@@ -125,7 +125,20 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public String omvendtString() {
-        throw new UnsupportedOperationException();
+        StringBuilder streng = new StringBuilder();
+
+        streng.append('[');     //legger til "start" klammen
+
+        if(!tom()){             // hvis lenken er tom går vi videre, hvis ikke, så looper vi baklengs gjennom listen
+            streng.append(hale.verdi);
+            for (Node<T> i = hale.forrige; i != null; i = i.forrige){    // så lenge noden ikke perker på null, legger vi til komma, mellomrom og nodens verdi
+                streng.append(',').append(' ').append(i.verdi);
+            }
+        }
+
+        streng.append(']');     // legger til "Slutt" klammen uten komma bak siste tall
+        return streng.toString();
+        //throw new UnsupportedOperationException();
     }
 
     @Override
