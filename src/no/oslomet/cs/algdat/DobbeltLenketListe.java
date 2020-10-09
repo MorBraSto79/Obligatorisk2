@@ -67,6 +67,18 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         Objects.requireNonNull(verdi, "Null-verdier er ikke tillat");
 
+        if (tom()){
+            hode = hale = new Node<T>(verdi, null, null);
+        }
+        else{
+            hale = hale.neste = new Node<T>(verdi, hale, null);
+        }
+
+        antall++;
+        endringer++;
+
+        return true;
+
         //throw new UnsupportedOperationException();
     }
 
