@@ -19,6 +19,26 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         private Node(T verdi){
             this(verdi, null, null);
         }
+
+        private Node<T> forrige() {
+            return forrige;
+        }
+
+        private Node<T> neste() {
+            return neste;
+        }
+
+        public void neste(Node<T> n) {
+            neste = n;
+        }
+
+        public void forrige(Node<T> n) {
+            forrige = n;
+        }
+
+        public void verdi(T v) {
+            verdi = v;
+        }
     }
 
     // instansvariabler
@@ -35,7 +55,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     public DobbeltLenketListe(T[] a) {
 
-        this();
+        //this();
         Objects.requireNonNull(a, "a er en null-tabell!");
         if (a.length == 0) {
             return;
@@ -48,7 +68,21 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             start++;
         }
 
-        throw new UnsupportedOperationException();
+        hode = new Node<T>(a[start]);
+        hale = hode;
+        antall = 1;
+        for (int i = start + 1; i < a.length; i++){
+            if (a[i] == null){
+                continue;
+            }
+            Node<T> ny = new Node<T>(a[i], hale, null);
+            hale.neste(ny);
+            ny.forrige(hale);
+            hale = ny;
+            antall++;
+        }
+
+        //throw new UnsupportedOperationException();
     }
 
     public Liste<T> subliste(int fra, int til){
