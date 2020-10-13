@@ -16,6 +16,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             this.neste = neste;
         }
 
+        public T verdi(){
+            return verdi;
+        }
+
         private Node(T verdi){
             this(verdi, null, null);
         }
@@ -50,12 +54,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public DobbeltLenketListe() {
 
 
-        throw new UnsupportedOperationException();
+        //throw new UnsupportedOperationException();
     }
 
     public DobbeltLenketListe(T[] a) {
 
-        //this();
+        this();
         Objects.requireNonNull(a, "a er en null-tabell!");
         if (a.length == 0) {
             return;
@@ -140,7 +144,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T hent(int indeks) {
-        throw new UnsupportedOperationException();
+
+        indeksKontroll(indeks, false);
+        Node<T> node = finnNode(indeks);
+        return node.verdi();
+
+        //throw new UnsupportedOperationException();
     }
 
     @Override
@@ -150,7 +159,16 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T oppdater(int indeks, T nyverdi) {
-        throw new UnsupportedOperationException();
+
+        Objects.requireNonNull(nyverdi);
+        indeksKontroll(indeks, false);
+        Node<T> node = finnNode(indeks);
+        T verdi = node.verdi();
+        node.verdi(nyverdi);
+        endringer++;
+        return verdi;
+
+        //throw new UnsupportedOperationException();
     }
 
     @Override
@@ -248,9 +266,29 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
         throw new UnsupportedOperationException();
     }
-
+    // hjelpemtode
     private Node<T> finnNode(int indeks){
-        throw new UnsupportedOperationException();
+
+        indeksKontroll(indeks, false);
+        if (indeks < antall / 2){
+            Node<T> node = this.hode;
+            while (node.neste() != null && indeks > 0) {
+                node = node.neste();
+                indeks--;
+            }
+            return node;
+        }
+
+        Node<T> node = this.hale;
+        int telling  = 1;
+        while (node.forrige() != null && antall - telling > indeks) {
+            node = node.forrige();
+            telling++;
+        }
+
+        return node;
+
+        //throw new UnsupportedOperationException();
     }
 
 } // class DobbeltLenketListe
