@@ -89,8 +89,26 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //throw new UnsupportedOperationException();
     }
 
+    private void fratilKontroll(int antall, int fra, int til){
+        if (fra < 0)                                  // fra er negativ
+            throw new IndexOutOfBoundsException
+                    ("fra(" + fra + ") er negativ!");
+        if (til > antall)                          // til er utenfor tabellen
+            throw new IndexOutOfBoundsException
+                    ("til(" + til + ") > antall(" + antall + ")");
+        if (fra > til)                                // fra er større enn til
+            throw new IllegalArgumentException
+                    ("fra(" + fra + ") > til(" + til + ") - illegalt intervall!");
+    }
+
     public Liste<T> subliste(int fra, int til){
-        throw new UnsupportedOperationException();
+        fratilKontroll(antall,fra, til);
+        Liste<T> sub = new DobbeltLenketListe<>();
+        for (int i = fra; i < til; i++){
+            sub.leggInn(hent(i));
+        }
+         return sub;
+        //throw new UnsupportedOperationException();
     }
 
     @Override
@@ -267,10 +285,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
     // hjelpemtode
-    private Node<T> finnNode(int indeks){
+    private Node<T> finnNode(int indeks) {
 
         indeksKontroll(indeks, false);
-        if (indeks < antall / 2){
+        if (indeks < antall / 2) {
             Node<T> node = this.hode;
             while (node.neste() != null && indeks > 0) {
                 node = node.neste();
@@ -280,7 +298,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         Node<T> node = this.hale;
-        int telling  = 1;
+        int telling = 1;
         while (node.forrige() != null && antall - telling > indeks) {
             node = node.forrige();
             telling++;
@@ -290,6 +308,5 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         //throw new UnsupportedOperationException();
     }
-
 } // class DobbeltLenketListe
 
