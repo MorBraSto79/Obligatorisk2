@@ -182,6 +182,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Node<T> node = this.hode;
         if (this.hode == null){
             return -1;
+        } else if (node.verdi().equals(verdi)){
+            return 0;
         }
 
         int indeks = 0;
@@ -192,7 +194,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 return indeks;
             }
         }
-        return indeks;
+        return -1;
         //throw new UnsupportedOperationException();
     }
 
