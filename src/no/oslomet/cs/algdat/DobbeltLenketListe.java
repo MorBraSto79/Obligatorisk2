@@ -378,7 +378,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         @Override
         public T next(){
 
-            if (endringer != iteratorendringer) {
+            if (iteratorendringer != endringer) {
                 throw new ConcurrentModificationException();
             }
             if (!hasNext()){
