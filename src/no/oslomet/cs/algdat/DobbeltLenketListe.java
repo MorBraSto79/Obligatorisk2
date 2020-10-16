@@ -3,6 +3,8 @@ package no.oslomet.cs.algdat;
 import java.util.Comparator;
 import java.util.Objects;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.ConcurrentModificationException;
 
 public class DobbeltLenketListe<T> implements Liste<T> {
 
@@ -241,18 +243,16 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean fjern(T verdi) {
-        throw new UnsupportedOperationException();
-    }
 
-    @Override
-    public T fjern(int indeks) {
+        Node<T> node = finnNode(verdi);
+        if (node == null) {
+            return false;
+        }
 
-        Node<T> node = finnNode(indeks);
-        T verdi = node.verdi();
-        if (node.forrige() != null) {
+        if (node.forrige() != null){
             node.forrige().neste(node.neste());
         } else {
-            this.hale = node.forrige();
+            this.hode = node.neste();
         }
 
         if (node.neste() != null) {
@@ -264,8 +264,31 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         node = null;
         antall--;
         endringer++;
-        return verdi;
+        return true;
 
+        //throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public T fjern(int indeks) {
+
+        Node<T> node = finnNode(indeks);
+        T verdi = node.verdi();
+        if (node.forrige() != null) {
+            node.forrige().neste(node.neste());
+        } else {
+            this.hode = node.neste();
+        }
+        if (node.neste() != null) {
+            node.neste().forrige(node.forrige());
+        } else {
+            this.hale = node.forrige();
+        }
+
+        node =  null;
+        antall--;
+        endringer++;
+        return verdi;
 
         //throw new UnsupportedOperationException();
     }
@@ -367,7 +390,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             }
             return node;
         }
-
         Node<T> node = this.hale;
         int telling = 1;
         while (node.forrige() != null && antall - telling > indeks) {
@@ -378,6 +400,23 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return node;
 
         //throw new UnsupportedOperationException();
+    }
+    private Node<T> finnNode(T verdi) {
+
+        Node<T> node = this.hode;
+        if (node == null) {
+            return null;
+        }
+        if (node.verdi().equals(verdi)) {
+            return node;
+        }
+        while (node.neste() != null) {
+            node = node.neste();
+            if (node.verdi().equals(verdi)) {
+                return node;
+            }
+        }
+        return null;
     }
 } // class DobbeltLenketListe
 
