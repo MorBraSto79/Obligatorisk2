@@ -1,6 +1,6 @@
 # Obligatorisk oppgave 2 i Algoritmer og Datastrukturer
 
-Denne oppgaven er en innlevering i Algoritmer og Datastrukturer. 
+Denne oppgaven er den andre obligatoriske innleveringen i Algoritmer og Datastrukturer. 
 
 # Krav til innlevering
 
@@ -19,5 +19,7 @@ Oppgaven er levert av følgende studenter:
 
 Jeg har brukt git til å dokumentere arbeidet mitt. 
 
-Jeg rakk ikke å bli ferdig. Jeg har endt opp med batch-arbeid, og fikk derfor ikke gjort alle oppgavene. 
-Jobber videre med å løse dem.
+Alle oppgaver er løst, og går gjennom testen, utenom oppgave 8. Regner med den ikke går gjennom, da 
+Oppgave 7 ikke er utført ( fordi jeg er alene ).
+
+

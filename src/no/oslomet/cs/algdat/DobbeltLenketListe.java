@@ -1,3 +1,4 @@
+// Skrevet av Morten Bråtesveen-Skråmestø. S326152
 package no.oslomet.cs.algdat;
 
 import java.util.Comparator;
